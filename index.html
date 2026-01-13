@@ -5,12 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>助動詞一覧 暗記ツール</title>
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="container">
-        <h1>❖ 助動詞一覧 ❖</h1>
-        <p>クリックして隠す・表示する機能を後で追加します。</p>
+        <h1>❖ 助動詞マスター ❖</h1>
         
+        <div class="control-panel">
+            <button id="btn-hide-all" class="btn btn-red">全隠し</button>
+            <button id="btn-random" class="btn btn-orange">ランダム</button>
+            <button id="btn-show-all" class="btn btn-blue">全表示</button>
+        </div>
+        <p class="instruction">マスをタップして答え合わせができます</p>
         <div class="table-wrapper">
             <table id="verb-table">
                 <thead>

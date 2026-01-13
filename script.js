@@ -1,4 +1,4 @@
-// 助動詞の完全データリスト（修正決定版）
+// 助動詞の完全データリスト
 const verbData = [
   // --- る・らる・す・さす・しむ ---
   { basic: "る", connection: "未然形", conjugation: ["れ", "れ", "る", "るる", "るれ", "れよ"], type: "下二段型", meaning: "受身・可能・自発・尊敬" },
@@ -7,7 +7,7 @@ const verbData = [
   { basic: "さす", connection: "未然形", conjugation: ["させ", "させ", "さす", "さする", "さすれ", "させよ"], type: "下二段型", meaning: "使役・尊敬" },
   { basic: "しむ", connection: "未然形", conjugation: ["しめ", "しめ", "しむ", "しむる", "しむれ", "しめよ"], type: "下二段型", meaning: "使役・尊敬" },
 
-  // --- ず（2行に分割） ---
+  // --- ず ---
   { basic: "ず", connection: "未然形", conjugation: ["○", "ず", "ず", "ぬ", "ね", "○"], type: "特殊型", meaning: "打消" },
   { basic: "ず", connection: "未然形", conjugation: ["ざら", "ざり", "○", "ざる", "ざれ", "ざれ"], type: "特殊型", meaning: "打消" },
 
@@ -17,7 +17,7 @@ const verbData = [
   { basic: "まし", connection: "未然形", conjugation: ["ませ/ましか", "○", "まし", "まし", "ましか", "○"], type: "特殊型", meaning: "反実仮想・ためらいの意志・推量" },
   { basic: "じ", connection: "未然形", conjugation: ["○", "○", "じ", "じ", "じ", "○"], type: "無変化型", meaning: "打消推量・打消意志" },
 
-  // --- まほし（2行に分割） ---
+  // --- まほし ---
   { basic: "まほし", connection: "未然形", conjugation: ["○", "まほしく", "まほし", "まほしき", "まほしけれ", "○"], type: "形容詞型", meaning: "希望" },
   { basic: "まほし", connection: "未然形", conjugation: ["まほしから", "まほしかり", "○", "まほしかる", "○", "○"], type: "形容詞型", meaning: "希望" },
 
@@ -28,7 +28,7 @@ const verbData = [
   { basic: "ぬ", connection: "連用形", conjugation: ["な", "に", "ぬ", "ぬる", "ぬれ", "ね"], type: "ナ変型", meaning: "完了・強意・並列" },
   { basic: "たり", connection: "連用形", conjugation: ["たら", "たり", "たり", "たる", "たれ", "たれ"], type: "ラ変型", meaning: "完了・存続" },
 
-  // --- たし（2行に分割） ---
+  // --- たし ---
   { basic: "たし", connection: "連用形", conjugation: ["○", "たく", "たし", "たき", "たけれ", "○"], type: "形容詞型", meaning: "希望" },
   { basic: "たし", connection: "連用形", conjugation: ["たから", "たかり", "○", "たかる", "○", "○"], type: "形容詞型", meaning: "希望" },
 
@@ -38,15 +38,15 @@ const verbData = [
   { basic: "めり", connection: "終止形", conjugation: ["○", "めり", "めり", "める", "めれ", "○"], type: "ラ変型", meaning: "推定・婉曲" },
   { basic: "らし", connection: "終止形", conjugation: ["○", "○", "らし", "らし", "らし", "○"], type: "無変化型", meaning: "推定" },
 
-  // --- べし（2行に分割） ---
+  // --- べし ---
   { basic: "べし", connection: "終止形", conjugation: ["○", "べく", "べし", "べき", "べけれ", "○"], type: "形容詞型", meaning: "推量・意志・可能・当然・命令・適当" },
   { basic: "べし", connection: "終止形", conjugation: ["べから", "べかり", "○", "べかる", "○", "○"], type: "形容詞型", meaning: "推量・意志・可能・当然・命令・適当" },
 
-  // --- まじ（2行に分割） ---
+  // --- まじ ---
   { basic: "まじ", connection: "終止形", conjugation: ["○", "まじく", "まじ", "まじき", "まじけれ", "○"], type: "形容詞型", meaning: "打消推量・打消意志・不可能・打消当然・禁止・不適当" },
   { basic: "まじ", connection: "終止形", conjugation: ["まじから", "まじかり", "○", "まじかる", "○", "○"], type: "形容詞型", meaning: "打消推量・打消意志・不可能・打消当然・禁止・不適当" },
 
-  // --- なり（伝聞）・なり（断定）・たり（断定）・ごとし・り ---
+  // --- なり・たり・ごとし・り ---
   { basic: "なり", connection: "終止形", conjugation: ["○", "なり", "なり", "なる", "なれ", "○"], type: "ラ変型", meaning: "伝聞・推定" },
   { basic: "なり", connection: "体言・連体形", conjugation: ["なら", "なり/に", "なり", "なる", "なれ", "なれ"], type: "形容動詞型", meaning: "断定・存在" },
   { basic: "たり", connection: "体言", conjugation: ["たら", "たり/と", "たり", "たる", "たれ", "たれ"], type: "形容動詞型", meaning: "断定" },
@@ -54,10 +54,11 @@ const verbData = [
   { basic: "り", connection: "サ変の未然・四段の已然", conjugation: ["ら", "り", "り", "る", "れ", "れ"], type: "ラ変型", meaning: "完了・存続" }
 ];
 
-// テーブルを生成する関数（修正：「型」が違えば名前が同じでも結合しない）
+// テーブル描画
 function renderTable() {
   const tbody = document.querySelector("#verb-table tbody");
-  
+  tbody.innerHTML = ""; // 再描画用にクリア
+
   let prevConnect = null, cellConnect = null;
   let prevBasic = null, cellBasic = null;
   let prevType = null, cellType = null;
@@ -73,6 +74,7 @@ function renderTable() {
       td.rowSpan = 1;
       td.style.verticalAlign = "middle";
       td.style.backgroundColor = "#fff5f5";
+      td.style.fontWeight = "bold";
       tr.appendChild(td);
       cellConnect = td;
       prevConnect = verb.connection;
@@ -81,14 +83,13 @@ function renderTable() {
     }
 
     // 2. 基本形
-    // 「基本形」「接続」「活用の型」のいずれかが変わったら新しいセルにする
-    // これで「なり（ラ変）」と「なり（形容動詞型）」は確実に区切られます
     if (verb.basic !== prevBasic || verb.connection !== prevConnect || verb.type !== prevType) { 
       const td = document.createElement("td");
       td.textContent = verb.basic;
       td.rowSpan = 1;
       td.style.fontWeight = "bold";
       td.style.verticalAlign = "middle";
+      td.style.color = "#b71c1c";
       tr.appendChild(td);
       cellBasic = td;
       prevBasic = verb.basic;
@@ -96,24 +97,24 @@ function renderTable() {
       if (cellBasic) cellBasic.rowSpan++;
     }
 
-    // 3. 活用形
+    // 3. 活用形（全マスにconjugation-cellクラスをつける）
     verb.conjugation.forEach(form => {
       const td = document.createElement("td");
       td.textContent = form;
       td.classList.add("conjugation-cell"); 
-      // td.classList.add("hidden"); 
       td.addEventListener("click", () => {
         td.classList.toggle("hidden"); 
       });
       tr.appendChild(td);
     });
 
-    // 4. 活用の型
+    // 4. 型
     if (verb.type !== prevType || verb.basic !== prevBasic || verb.connection !== prevConnect) {
       const td = document.createElement("td");
       td.textContent = verb.type;
       td.rowSpan = 1;
       td.style.verticalAlign = "middle";
+      td.style.fontSize = "0.85rem";
       tr.appendChild(td);
       cellType = td;
       prevType = verb.type;
@@ -127,6 +128,7 @@ function renderTable() {
       td.textContent = verb.meaning;
       td.rowSpan = 1;
       td.style.verticalAlign = "middle";
+      td.style.fontSize = "0.85rem";
       tr.appendChild(td);
       cellMeaning = td;
       prevMeaning = verb.meaning;
@@ -138,4 +140,34 @@ function renderTable() {
   });
 }
 
-document.addEventListener("DOMContentLoaded", renderTable);
+// ▼▼▼ 機能ボタンの制御ロジック ▼▼▼
+function setupControls() {
+  const cells = document.getElementsByClassName("conjugation-cell");
+
+  // 全隠し
+  document.getElementById("btn-hide-all").addEventListener("click", () => {
+    Array.from(cells).forEach(cell => cell.classList.add("hidden"));
+  });
+
+  // 全表示
+  document.getElementById("btn-show-all").addEventListener("click", () => {
+    Array.from(cells).forEach(cell => cell.classList.remove("hidden"));
+  });
+
+  // ランダム（50%の確率で隠す）
+  document.getElementById("btn-random").addEventListener("click", () => {
+    Array.from(cells).forEach(cell => {
+      if (Math.random() > 0.5) {
+        cell.classList.add("hidden");
+      } else {
+        cell.classList.remove("hidden");
+      }
+    });
+  });
+}
+
+// 実行
+document.addEventListener("DOMContentLoaded", () => {
+  renderTable();
+  setupControls();
+});
