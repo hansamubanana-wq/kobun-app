@@ -12,11 +12,22 @@
         <h1>❖ 助動詞マスター ❖</h1>
         
         <div class="control-panel">
-            <button id="btn-hide-all" class="btn btn-red">全隠し</button>
-            <button id="btn-random" class="btn btn-orange">ランダム</button>
-            <button id="btn-show-all" class="btn btn-blue">全表示</button>
+            <div id="mode-view-controls">
+                <button id="btn-hide-all" class="btn btn-red">全隠し</button>
+                <button id="btn-random" class="btn btn-orange">ランダム</button>
+                <button id="btn-show-all" class="btn btn-blue">全表示</button>
+                <button id="btn-start-test" class="btn btn-green">入力テスト</button>
+            </div>
+
+            <div id="mode-test-controls" style="display: none;">
+                <button id="btn-check" class="btn btn-blue">答え合わせ</button>
+                <button id="btn-retry" class="btn btn-orange">やり直し</button>
+                <button id="btn-end-test" class="btn btn-red">終了</button>
+            </div>
         </div>
-        <p class="instruction">マスをタップして答え合わせができます</p>
+
+        <p class="instruction" id="instruction-text">マスをタップして答え合わせができます</p>
+
         <div class="table-wrapper">
             <table id="verb-table">
                 <thead>

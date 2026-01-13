@@ -1,9 +1,9 @@
-/* 全体のフォント設定（Google Fonts適用） */
+/* 全体のフォント設定 */
 body {
     font-family: "M PLUS Rounded 1c", "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
     margin: 0;
     padding: 20px;
-    background-color: #fffaf0; /* 背景を少し温かみのある色に */
+    background-color: #fffaf0;
     color: #444;
 }
 
@@ -26,12 +26,18 @@ h1 {
     color: #888;
 }
 
-/* ▼▼▼ 追加：コントロールパネルとボタン ▼▼▼ */
+/* コントロールパネル */
 .control-panel {
     display: flex;
     justify-content: center;
     gap: 10px;
     margin-bottom: 20px;
+}
+
+/* ボタンのグルーピング用（横並びにする） */
+#mode-view-controls, #mode-test-controls {
+    display: flex;
+    gap: 10px;
 }
 
 .btn {
@@ -54,7 +60,7 @@ h1 {
 .btn-red { background-color: #ef5350; color: white; }
 .btn-orange { background-color: #ff9800; color: white; }
 .btn-blue { background-color: #42a5f5; color: white; }
-/* ▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲ */
+.btn-green { background-color: #66bb6a; color: white; }
 
 /* 表のラッパー */
 .table-wrapper {
@@ -62,7 +68,6 @@ h1 {
     border-radius: 8px;
     box-shadow: 0 4px 12px rgba(0,0,0,0.08);
     background-color: #fff;
-    /* スクロールバーのデザイン（Chrome/Safari用） */
     scrollbar-width: thin;
     scrollbar-color: #ffcdd2 #fff;
 }
@@ -73,7 +78,7 @@ table {
     min-width: 800px;
 }
 
-/* ▼▼▼ 修正：ヘッダー固定 (Sticky) ▼▼▼ */
+/* ヘッダー固定 */
 th {
     background-color: #ffcdd2;
     color: #b71c1c;
@@ -81,18 +86,16 @@ th {
     padding: 10px;
     font-weight: bold;
     white-space: nowrap;
-    
-    position: sticky; /* スクロールしても追従 */
+    position: sticky;
     top: 0;
     z-index: 10;
-    box-shadow: 0 2px 2px rgba(0,0,0,0.1); /* ヘッダーの下に影 */
+    box-shadow: 0 2px 2px rgba(0,0,0,0.1);
 }
 
-/* 2段目のヘッダーは少し位置を下げる */
 .subheader th {
     background-color: #ffebee;
     font-size: 0.9rem;
-    top: 45px; /* 1段目の高さ分ずらす（目安） */
+    top: 45px;
 }
 
 td {
@@ -103,34 +106,120 @@ td {
     background-color: #fff;
 }
 
-/* 行ごとのデザイン */
+/* 行のデザイン */
 tr:nth-child(even) td {
-    background-color: #fffbf7; /* 結合セル以外を薄い色に */
+    background-color: #fffbf7;
 }
-
-/* 結合されたセルの背景色をリセットするための指定 */
 td[rowspan] {
     background-color: #fff !important; 
 }
 
-/* 接続列の特別色 */
-td[style*="background-color"] {
-    /* script.jsでつけた色を優先 */
-}
-
-/* 活用形セル（答え部分） */
+/* 活用形セル */
 .conjugation-cell {
     font-weight: bold;
     color: #d32f2f;
-    min-width: 40px;
+    min-width: 60px; /* 入力欄が入るため少し広めに */
+    height: 40px;    /* 高さも確保 */
     cursor: pointer;
-    user-select: none; /* スマホで連打しても選択状態にならないように */
+    user-select: none;
     transition: all 0.2s ease;
 }
 
 /* 暗記モード（黒塗り） */
 .conjugation-cell.hidden {
-    background-color: #2c3e50 !important; /* しっかり濃い色 */
+    background-color: #2c3e50 !important;
     color: transparent !important;
     box-shadow: inset 0 0 10px rgba(0,0,0,0.2);
+}
+
+/* ▼▼▼ テスト入力モード用のスタイル ▼▼▼ */
+.test-input {
+    width: 90%;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    text-align: center;
+    font-family: inherit;
+    outline: none;
+}
+
+.test-input:focus {
+    border-color: #42a5f5;
+    background-color: #e3f2fd;
+}
+
+/* 正解時のスタイル */
+.correct {
+    background-color: #dcedc8 !important; /* 薄い緑 */
+    color: #33691e !important;
+    border-color: #8bc34a;
+}
+
+/* 不正解時のスタイル */
+.incorrect {
+    background-color: #ffcdd2 !important; /* 薄い赤 */
+    color: #b71c1c !important;
+}
+
+/* ▼▼▼ 印刷用設定 (A4横対応) ▼▼▼ */
+@media print {
+    /* 印刷時にボタンや説明文を消す */
+    .control-panel, 
+    .instruction,
+    button {
+        display: none !important;
+    }
+
+    /* ページ設定：A4横向き (Landscape) */
+    @page {
+        size: A4 landscape;
+        margin: 10mm;
+    }
+
+    /* コンテナの幅制限を解除 */
+    .container {
+        width: 100%;
+        max-width: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    /* スクロール設定を解除して、紙からはみ出さないように */
+    .table-wrapper {
+        overflow: visible;
+        box-shadow: none;
+        background-color: transparent;
+    }
+
+    /* 表の文字サイズを少し調整してA4に収める */
+    table {
+        min-width: 0; /* 幅の強制を解除 */
+        width: 100%;
+        font-size: 10pt; /* 印刷に適したサイズ */
+    }
+
+    td, th {
+        padding: 4px 2px; /* 余白を詰める */
+        border: 1px solid #000; /* 印刷用に枠線をくっきり黒に */
+    }
+    
+    /* 印刷時は背景色を正確に出す */
+    body {
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+        background-color: white;
+    }
+    
+    /* ヘッダーの固定を解除（紙で固定されるとおかしくなるため） */
+    th {
+        position: static;
+        box-shadow: none;
+    }
+    
+    /* 入力テストモードで印刷する場合、input枠を消して書き込めるようにする */
+    .test-input {
+        border: none;
+        background: transparent;
+    }
 }
