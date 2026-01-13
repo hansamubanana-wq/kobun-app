@@ -65,7 +65,7 @@ function renderTable() {
   let prevType = null, cellType = null;
   let prevMeaning = null, cellMeaning = null;
 
-  verbData.forEach((verb, rowIndex) => { // rowIndexを追加
+  verbData.forEach((verb, rowIndex) => {
     const tr = document.createElement("tr");
 
     // 1. 接続
@@ -98,8 +98,8 @@ function renderTable() {
       if (cellBasic) cellBasic.rowSpan++;
     }
 
-    // 3. 活用形（矢印キー対応ロジック追加）
-    verb.conjugation.forEach((form, colIndex) => { // colIndexを追加
+    // 3. 活用形
+    verb.conjugation.forEach((form, colIndex) => {
       const td = document.createElement("td");
       td.classList.add("conjugation-cell"); 
       
@@ -109,11 +109,10 @@ function renderTable() {
         input.classList.add("test-input");
         input.dataset.answer = form;
         
-        // --- 矢印キー移動用の座標データをセット ---
+        // 矢印キー移動用の座標データ
         input.dataset.row = rowIndex;
         input.dataset.col = colIndex;
 
-        // キー操作イベント
         input.addEventListener("keydown", (e) => {
           handleArrowKey(e, rowIndex, colIndex);
         });
@@ -167,13 +166,12 @@ function handleArrowKey(e, currentRow, currentCol) {
   let targetRow = currentRow;
   let targetCol = currentCol;
 
-  // 矢印キーまたはEnterキーの判定
   switch(e.key) {
     case "ArrowUp":
       targetRow--;
       break;
     case "ArrowDown":
-    case "Enter": // Enterでも下に移動するように
+    case "Enter": 
       targetRow++;
       break;
     case "ArrowLeft":
@@ -183,17 +181,14 @@ function handleArrowKey(e, currentRow, currentCol) {
       targetCol++;
       break;
     default:
-      return; // 他のキーなら何もしない
+      return; 
   }
 
-  // 移動先のinput要素を探す
   const targetInput = document.querySelector(`input[data-row="${targetRow}"][data-col="${targetCol}"]`);
   
-  // 見つかったらフォーカスを移す
   if (targetInput) {
-    e.preventDefault(); // 本来のスクロールなどを防ぐ
+    e.preventDefault();
     targetInput.focus();
-    // 入力済みの文字があれば全選択（上書きしやすくする）
     targetInput.select();
   }
 }
@@ -227,6 +222,7 @@ function setupControls() {
   const testControls = document.getElementById("mode-test-controls");
   const instruction = document.getElementById("instruction-text");
 
+  // --- 通常モードのボタン ---
   document.getElementById("btn-hide-all").addEventListener("click", () => {
     document.querySelectorAll(".conjugation-cell").forEach(c => c.classList.add("hidden"));
   });
@@ -242,12 +238,13 @@ function setupControls() {
     });
   });
 
+  // --- テストモード開始 ---
   document.getElementById("btn-start-test").addEventListener("click", () => {
     isTestMode = true;
     renderTable();
     viewControls.style.display = "none";
     testControls.style.display = "flex";
-    instruction.textContent = "答えを入力して「答え合わせ」を押してください（矢印キーで移動可能）";
+    instruction.textContent = "答えを入力して「Ctrl + Enter」で答え合わせ（矢印キーで移動可能）";
     instruction.style.color = "#d32f2f";
     instruction.style.fontWeight = "bold";
   });
@@ -269,6 +266,15 @@ function setupControls() {
     instruction.textContent = "マスをタップして答え合わせができます";
     instruction.style.color = "#888";
     instruction.style.fontWeight = "normal";
+  });
+
+  // ▼▼▼ 追加：ショートカットキー (Ctrl + Enter) で答え合わせ ▼▼▼
+  document.addEventListener("keydown", (e) => {
+    // テストモード中 かつ (CtrlまたはCommand) + Enter
+    if (isTestMode && (e.ctrlKey || e.metaKey) && e.key === "Enter") {
+      e.preventDefault();
+      checkAnswers();
+    }
   });
 }
 
