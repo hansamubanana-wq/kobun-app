@@ -1,0 +1,94 @@
+/* 全体のフォント設定 */
+body {
+    font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
+    margin: 0;
+    padding: 20px;
+    background-color: #f9f9f9;
+    color: #333;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+h1 {
+    text-align: center;
+    color: #b71c1c; /* 深い赤 */
+    margin-bottom: 10px;
+}
+
+p {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 0.9rem;
+    color: #666;
+}
+
+/* 表のスクロール設定（スマホ対応） */
+.table-wrapper {
+    overflow-x: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+/* テーブル全体のデザイン */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 800px; /* スマホで縮みすぎないように */
+    background-color: #fff;
+}
+
+/* ヘッダー（項目名）のデザイン */
+th {
+    background-color: #ffcdd2; /* 薄いピンク */
+    color: #b71c1c;
+    border: 1px solid #e57373;
+    padding: 10px;
+    font-weight: bold;
+    white-space: nowrap;
+}
+
+/* 2段目のヘッダー（未然形〜命令形） */
+.subheader th {
+    background-color: #ffebee;
+    font-size: 0.9rem;
+}
+
+/* データセルのデザイン */
+td {
+    border: 1px solid #ddd;
+    padding: 12px 8px;
+    text-align: center;
+    font-size: 0.95rem;
+}
+
+/* 行ごとのデザイン調整 */
+tr:nth-child(even) {
+    background-color: #fffaf0; /* 薄いクリーム色で縞模様に */
+}
+
+tr:hover {
+    background-color: #fff3e0; /* マウスを乗せた時の色 */
+}
+
+/* 活用形セル（答え部分）の特別設定 */
+.conjugation-cell {
+    font-weight: bold;
+    color: #d32f2f;
+    min-width: 40px;
+    cursor: pointer; /* クリックできることがわかるように */
+    transition: background-color 0.2s, color 0.2s;
+}
+
+/* ▼▼▼ 暗記モード用の重要クラス ▼▼▼ */
+/* このクラスがつくと文字が消えます */
+.conjugation-cell.hidden {
+    background-color: #333; /* 黒塗り */
+    color: transparent;     /* 文字を透明に */
+}
+
+.conjugation-cell.hidden:hover {
+    background-color: #555; /* ホバー時は少し明るく */
+}
