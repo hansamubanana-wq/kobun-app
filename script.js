@@ -3,11 +3,8 @@
 // ==========================================
 
 // --- 古文助動詞データ ---
-// （※ここは前回のデータをそのまま残してください。省略していません）
+// （※中身はあなたの手元のものをそのまま使ってください。ここでは省略表示します）
 const verbData = [
-  // ... (前回の verbData の中身をここにそのまま置いてください！) ...
-  // ※長くなるため省略しますが、あなたの手元のファイルにある
-  // verbData = [ ... ] の中身は消さずにそのまま使ってください。
   { basic: "る", connection: "未然形", conjugation: ["れ", "れ", "る", "るる", "るれ", "れよ"], type: "下二段型", meaning: "受身・可能・自発・尊敬" },
   { basic: "らる", connection: "未然形", conjugation: ["られ", "られ", "らる", "らるる", "らるれ", "られよ"], type: "下二段型", meaning: "受身・可能・自発・尊敬" },
   { basic: "す", connection: "未然形", conjugation: ["せ", "せ", "す", "する", "すれ", "せよ"], type: "下二段型", meaning: "使役・尊敬" },
@@ -43,7 +40,7 @@ const verbData = [
   { basic: "り", connection: "サ変の未然・四段の已然", conjugation: ["ら", "り", "り", "る", "れ", "れ"], type: "ラ変型", meaning: "完了・存続" }
 ];
 
-// --- 理科：元素データ（原子番号1〜20）修正版 ---
+// --- 理科：元素データ ---
 const scienceData = [
     { num: 1, symbol: "H", name: "水素", note: "すい" },
     { num: 2, symbol: "He", name: "ヘリウム", note: "へい" },
@@ -67,35 +64,87 @@ const scienceData = [
     { num: 20, symbol: "Ca", name: "カルシウム", note: "か" }
 ];
 
+// --- 英語：不規則動詞データ（新規追加） ---
+const englishData = [
+    // A-A-A型
+    { type: "A-A-A型", base: "cut", past: "cut", participle: "cut", meaning: "切る" },
+    { type: "A-A-A型", base: "put", past: "put", participle: "put", meaning: "置く" },
+    { type: "A-A-A型", base: "read", past: "read", participle: "read", meaning: "読む(発音注意)" },
+    { type: "A-A-A型", base: "set", past: "set", participle: "set", meaning: "置く・設置する" },
+    
+    // A-B-B型
+    { type: "A-B-B型", base: "bring", past: "brought", participle: "brought", meaning: "持ってくる" },
+    { type: "A-B-B型", base: "buy", past: "bought", participle: "bought", meaning: "買う" },
+    { type: "A-B-B型", base: "catch", past: "caught", participle: "caught", meaning: "捕まえる" },
+    { type: "A-B-B型", base: "teach", past: "taught", participle: "taught", meaning: "教える" },
+    { type: "A-B-B型", base: "think", past: "thought", participle: "thought", meaning: "思う" },
+    { type: "A-B-B型", base: "feel", past: "felt", participle: "felt", meaning: "感じる" },
+    { type: "A-B-B型", base: "find", past: "found", participle: "found", meaning: "見つける" },
+    { type: "A-B-B型", base: "have", past: "had", participle: "had", meaning: "持っている" },
+    { type: "A-B-B型", base: "hear", past: "heard", participle: "heard", meaning: "聞く" },
+    { type: "A-B-B型", base: "hold", past: "held", participle: "held", meaning: "握る・開催する" },
+    { type: "A-B-B型", base: "keep", past: "kept", participle: "kept", meaning: "保つ" },
+    { type: "A-B-B型", base: "make", past: "made", participle: "made", meaning: "作る" },
+    { type: "A-B-B型", base: "meet", past: "met", participle: "met", meaning: "会う" },
+    { type: "A-B-B型", base: "say", past: "said", participle: "said", meaning: "言う" },
+    { type: "A-B-B型", base: "sell", past: "sold", participle: "sold", meaning: "売る" },
+    { type: "A-B-B型", base: "send", past: "sent", participle: "sent", meaning: "送る" },
+    { type: "A-B-B型", base: "stand", past: "stood", participle: "stood", meaning: "立つ" },
+    { type: "A-B-B型", base: "tell", past: "told", participle: "told", meaning: "話す" },
+
+    // A-B-C型
+    { type: "A-B-C型", base: "be", past: "was/were", participle: "been", meaning: "〜である" },
+    { type: "A-B-C型", base: "begin", past: "began", participle: "begun", meaning: "始める" },
+    { type: "A-B-C型", base: "break", past: "broke", participle: "broken", meaning: "壊す" },
+    { type: "A-B-C型", base: "choose", past: "chose", participle: "chosen", meaning: "選ぶ" },
+    { type: "A-B-C型", base: "do", past: "did", participle: "done", meaning: "する" },
+    { type: "A-B-C型", base: "draw", past: "drew", participle: "drawn", meaning: "描く" },
+    { type: "A-B-C型", base: "drink", past: "drank", participle: "drunk", meaning: "飲む" },
+    { type: "A-B-C型", base: "drive", past: "drove", participle: "driven", meaning: "運転する" },
+    { type: "A-B-C型", base: "eat", past: "ate", participle: "eaten", meaning: "食べる" },
+    { type: "A-B-C型", base: "give", past: "gave", participle: "given", meaning: "与える" },
+    { type: "A-B-C型", base: "go", past: "went", participle: "gone", meaning: "行く" },
+    { type: "A-B-C型", base: "know", past: "knew", participle: "known", meaning: "知っている" },
+    { type: "A-B-C型", base: "see", past: "saw", participle: "seen", meaning: "見る" },
+    { type: "A-B-C型", base: "speak", past: "spoke", participle: "spoken", meaning: "話す" },
+    { type: "A-B-C型", base: "take", past: "took", participle: "taken", meaning: "取る" },
+    { type: "A-B-C型", base: "write", past: "wrote", participle: "written", meaning: "書く" },
+
+    // A-B-A型
+    { type: "A-B-A型", base: "become", past: "became", participle: "become", meaning: "〜になる" },
+    { type: "A-B-A型", base: "come", past: "came", participle: "come", meaning: "来る" },
+    { type: "A-B-A型", base: "run", past: "ran", participle: "run", meaning: "走る" }
+];
+
 
 // ==========================================
 // 2. 状態管理
 // ==========================================
-let currentSubject = ""; // "kobun" または "science"
+let currentSubject = ""; // "kobun", "science", "english"
 let isTestMode = false;
 
 // ==========================================
 // 3. レンダリング関数
 // ==========================================
 
-// メインの描画関数
 function renderTable() {
     const tableHead = document.querySelector("#app-table thead");
     const tableBody = document.querySelector("#app-table tbody");
     
-    tableHead.innerHTML = ""; // クリア
-    tableBody.innerHTML = ""; // クリア
+    tableHead.innerHTML = "";
+    tableBody.innerHTML = "";
 
     if (currentSubject === "kobun") {
         renderKobun(tableHead, tableBody);
     } else if (currentSubject === "science") {
         renderScience(tableHead, tableBody);
+    } else if (currentSubject === "english") {
+        renderEnglish(tableHead, tableBody);
     }
 }
 
 // --- 古文の描画 ---
 function renderKobun(thead, tbody) {
-    // ヘッダー作成
     thead.innerHTML = `
         <tr>
             <th rowspan="2">接続</th>
@@ -114,7 +163,6 @@ function renderKobun(thead, tbody) {
         </tr>
     `;
 
-    // データ描画ロジック
     let prevConnect = null, cellConnect = null;
     let prevBasic = null, cellBasic = null;
     let prevType = null, cellType = null;
@@ -123,7 +171,6 @@ function renderKobun(thead, tbody) {
     verbData.forEach((verb, rowIndex) => {
         const tr = document.createElement("tr");
 
-        // 1. 接続
         if (verb.connection !== prevConnect) {
             const td = createTd(verb.connection, { rowspan: 1, bgColor: "#fff5f5", bold: true });
             tr.appendChild(td);
@@ -133,7 +180,6 @@ function renderKobun(thead, tbody) {
             cellConnect.rowSpan++;
         }
 
-        // 2. 基本形
         if (verb.basic !== prevBasic || verb.connection !== prevConnect || verb.type !== prevType) { 
             const td = createTd(verb.basic, { rowspan: 1, color: "#b71c1c", bold: true });
             tr.appendChild(td);
@@ -143,13 +189,11 @@ function renderKobun(thead, tbody) {
             cellBasic.rowSpan++;
         }
 
-        // 3. 活用形（暗記対象）
         verb.conjugation.forEach((form, colIndex) => {
             const td = createMemoryCell(form, rowIndex, colIndex);
             tr.appendChild(td);
         });
 
-        // 4. 型
         if (verb.type !== prevType || verb.basic !== prevBasic || verb.connection !== prevConnect) {
             const td = createTd(verb.type, { rowspan: 1, fontSize: "0.85rem" });
             tr.appendChild(td);
@@ -159,7 +203,6 @@ function renderKobun(thead, tbody) {
             cellType.rowSpan++;
         }
 
-        // 5. 意味
         if (verb.meaning !== prevMeaning || verb.basic !== prevBasic || verb.connection !== prevConnect) {
             const td = createTd(verb.meaning, { rowspan: 1, fontSize: "0.85rem" });
             tr.appendChild(td);
@@ -175,7 +218,6 @@ function renderKobun(thead, tbody) {
 
 // --- 理科の描画 ---
 function renderScience(thead, tbody) {
-    // ヘッダー作成
     thead.innerHTML = `
         <tr>
             <th>番号</th>
@@ -187,25 +229,57 @@ function renderScience(thead, tbody) {
 
     scienceData.forEach((elem, rowIndex) => {
         const tr = document.createElement("tr");
-
-        // 番号
         tr.appendChild(createTd(elem.num));
-
-        // 記号（暗記対象：colIndex=0とする）
         tr.appendChild(createMemoryCell(elem.symbol, rowIndex, 0));
-
-        // 元素名（暗記対象：colIndex=1とする）
         tr.appendChild(createMemoryCell(elem.name, rowIndex, 1));
-
-        // 備考
         tr.appendChild(createTd(elem.note, { fontSize: "0.85rem", color: "#666" }));
+        tbody.appendChild(tr);
+    });
+}
+
+// --- 英語の描画（新規） ---
+function renderEnglish(thead, tbody) {
+    thead.innerHTML = `
+        <tr>
+            <th>変化の型</th>
+            <th>原形</th>
+            <th>過去形</th>
+            <th>過去分詞</th>
+            <th>意味</th>
+        </tr>
+    `;
+
+    let prevType = null, cellType = null;
+
+    englishData.forEach((word, rowIndex) => {
+        const tr = document.createElement("tr");
+
+        // 型（A-B-Bなど）を結合表示
+        if (word.type !== prevType) {
+            const td = createTd(word.type, { rowspan: 1, bgColor: "#e3f2fd", bold: true });
+            tr.appendChild(td);
+            cellType = td;
+            prevType = word.type;
+        } else if (cellType) {
+            cellType.rowSpan++;
+        }
+
+        // 原形
+        tr.appendChild(createTd(word.base, { bold: true }));
+
+        // 過去形・過去分詞（暗記対象）
+        tr.appendChild(createMemoryCell(word.past, rowIndex, 0));
+        tr.appendChild(createMemoryCell(word.participle, rowIndex, 1));
+
+        // 意味
+        tr.appendChild(createTd(word.meaning, { fontSize: "0.9rem" }));
 
         tbody.appendChild(tr);
     });
 }
 
 // ==========================================
-// 4. ヘルパー関数 (セル作成の簡略化)
+// 4. ヘルパー関数
 // ==========================================
 
 function createTd(text, options = {}) {
@@ -220,13 +294,11 @@ function createTd(text, options = {}) {
     return td;
 }
 
-// 暗記用セル（隠す・入力テスト）を作る関数
 function createMemoryCell(answerText, row, col) {
     const td = document.createElement("td");
     td.classList.add("memory-cell");
 
     if (isTestMode) {
-        // テストモード：入力欄
         const input = document.createElement("input");
         input.type = "text";
         input.classList.add("test-input");
@@ -238,7 +310,6 @@ function createMemoryCell(answerText, row, col) {
         td.appendChild(input);
         td.style.cursor = "default";
     } else {
-        // 通常モード：クリックで隠す
         td.textContent = answerText;
         td.addEventListener("click", () => {
             td.classList.toggle("hidden");
@@ -248,7 +319,7 @@ function createMemoryCell(answerText, row, col) {
 }
 
 // ==========================================
-// 5. 機能ロジック (矢印移動・答え合わせ)
+// 5. 機能ロジック
 // ==========================================
 
 function handleArrowKey(e, currentRow, currentCol) {
@@ -263,7 +334,6 @@ function handleArrowKey(e, currentRow, currentCol) {
         default: return; 
     }
 
-    // 移動先のinputを探す
     const targetInput = document.querySelector(`input[data-row="${targetRow}"][data-col="${targetCol}"]`);
     if (targetInput) {
         e.preventDefault();
@@ -275,7 +345,7 @@ function handleArrowKey(e, currentRow, currentCol) {
 function checkAnswers() {
     const inputs = document.querySelectorAll(".test-input");
     inputs.forEach(input => {
-        const userVal = input.value.trim().toLowerCase(); // 大文字小文字を区別しない
+        const userVal = input.value.trim().toLowerCase();
         const correctRaw = input.dataset.answer;
         const correctOptions = correctRaw.split("/").map(s => s.replace(/[()]/g, "").toLowerCase());
 
@@ -283,7 +353,6 @@ function checkAnswers() {
         if (correctRaw === "○") {
             if (userVal === "" || userVal === "○" || userVal === "まる") isCorrect = true;
         } else {
-            // 完全一致または選択肢に含まれるか
             if (correctOptions.includes(userVal)) isCorrect = true;
             if (input.value.trim() === "") isCorrect = false; 
         }
@@ -305,7 +374,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const gameScreen = document.getElementById("game-screen");
     const subjectTitle = document.getElementById("subject-title");
 
-    // メニュー：古文を選ぶ
+    // メニュー：古文
     document.getElementById("btn-select-kobun").addEventListener("click", () => {
         currentSubject = "kobun";
         subjectTitle.textContent = "❖ 古文助動詞一覧 ❖";
@@ -317,11 +386,23 @@ document.addEventListener("DOMContentLoaded", () => {
         updateControlsUI();
     });
 
-    // メニュー：理科を選ぶ
+    // メニュー：理科
     document.getElementById("btn-select-science").addEventListener("click", () => {
         currentSubject = "science";
         subjectTitle.textContent = "❖ 元素周期表 (1-20) ❖";
-        subjectTitle.style.color = "#2e7d32"; // 緑系
+        subjectTitle.style.color = "#2e7d32";
+        menuScreen.style.display = "none";
+        gameScreen.style.display = "block";
+        isTestMode = false;
+        renderTable();
+        updateControlsUI();
+    });
+
+    // メニュー：英語（新規）
+    document.getElementById("btn-select-english").addEventListener("click", () => {
+        currentSubject = "english";
+        subjectTitle.textContent = "❖ 英語 不規則動詞 ❖";
+        subjectTitle.style.color = "#1565c0"; // 青系
         menuScreen.style.display = "none";
         gameScreen.style.display = "block";
         isTestMode = false;
@@ -336,7 +417,6 @@ document.addEventListener("DOMContentLoaded", () => {
         isTestMode = false; 
     });
 
-    // --- コントロールボタン ---
     const viewControls = document.getElementById("mode-view-controls");
     const testControls = document.getElementById("mode-test-controls");
     const instruction = document.getElementById("instruction-text");
@@ -393,7 +473,6 @@ document.addEventListener("DOMContentLoaded", () => {
         updateControlsUI();
     });
 
-    // ショートカットキー
     document.addEventListener("keydown", (e) => {
         if (isTestMode && (e.ctrlKey || e.metaKey) && e.key === "Enter") {
             e.preventDefault();
