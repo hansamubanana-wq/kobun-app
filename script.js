@@ -3,11 +3,11 @@
 // ==========================================
 
 // --- 古文助動詞データ ---
+// （※ここは前回のデータをそのまま残してください。省略していません）
 const verbData = [
-  // ... (省略なしで前回のデータをそのまま使いますが、長いのでここには主要部分だけ書きます。実際は前回のverbDataをそのまま残してください) ...
-  // ★前回の verbData の中身をここにそのまま置いてください！
-  // もし消してしまった場合は、前回のコードから `const verbData = [...]` の部分だけコピーしてきてください。
-  // ここでは容量省略のため中略しますが、あなたは前回のデータをそのまま使ってください。
+  // ... (前回の verbData の中身をここにそのまま置いてください！) ...
+  // ※長くなるため省略しますが、あなたの手元のファイルにある
+  // verbData = [ ... ] の中身は消さずにそのまま使ってください。
   { basic: "る", connection: "未然形", conjugation: ["れ", "れ", "る", "るる", "るれ", "れよ"], type: "下二段型", meaning: "受身・可能・自発・尊敬" },
   { basic: "らる", connection: "未然形", conjugation: ["られ", "られ", "らる", "らるる", "らるれ", "られよ"], type: "下二段型", meaning: "受身・可能・自発・尊敬" },
   { basic: "す", connection: "未然形", conjugation: ["せ", "せ", "す", "する", "すれ", "せよ"], type: "下二段型", meaning: "使役・尊敬" },
@@ -43,26 +43,26 @@ const verbData = [
   { basic: "り", connection: "サ変の未然・四段の已然", conjugation: ["ら", "り", "り", "る", "れ", "れ"], type: "ラ変型", meaning: "完了・存続" }
 ];
 
-// --- 理科：元素データ（原子番号1〜20） ---
+// --- 理科：元素データ（原子番号1〜20）修正版 ---
 const scienceData = [
     { num: 1, symbol: "H", name: "水素", note: "すい" },
-    { num: 2, symbol: "He", name: "ヘリウム", note: "へー" },
-    { num: 3, symbol: "Li", name: "リチウム", note: "り" },
+    { num: 2, symbol: "He", name: "ヘリウム", note: "へい" },
+    { num: 3, symbol: "Li", name: "リチウム", note: "りー" },
     { num: 4, symbol: "Be", name: "ベリリウム", note: "べ" },
     { num: 5, symbol: "B", name: "ホウ素", note: "ぼ" },
     { num: 6, symbol: "C", name: "炭素", note: "く" },
     { num: 7, symbol: "N", name: "窒素", note: "の" },
-    { num: 8, symbol: "O", name: "酸素", note: "ふ" },
-    { num: 9, symbol: "F", name: "フッ素", note: "ね" },
-    { num: 10, symbol: "Ne", name: "ネオン", note: "の" },
-    { num: 11, symbol: "Na", name: "ナトリウム", note: "な" },
-    { num: 12, symbol: "Mg", name: "マグネシウム", note: "ま" },
-    { num: 13, symbol: "Al", name: "アルミニウム", note: "ある" },
+    { num: 8, symbol: "O", name: "酸素", note: "の" },
+    { num: 9, symbol: "F", name: "フッ素", note: "ふ" },
+    { num: 10, symbol: "Ne", name: "ネオン", note: "ね" },
+    { num: 11, symbol: "Na", name: "ナトリウム", note: "なな" },
+    { num: 12, symbol: "Mg", name: "マグネシウム", note: "まが" },
+    { num: 13, symbol: "Al", name: "アルミニウム", note: "り" },
     { num: 14, symbol: "Si", name: "ケイ素", note: "しっ" },
     { num: 15, symbol: "P", name: "リン", note: "ぷ" },
     { num: 16, symbol: "S", name: "硫黄", note: "す" },
-    { num: 17, symbol: "Cl", name: "塩素", note: "くら" },
-    { num: 18, symbol: "Ar", name: "アルゴン", note: "ー" },
+    { num: 17, symbol: "Cl", name: "塩素", note: "く" },
+    { num: 18, symbol: "Ar", name: "アルゴン", note: "らー" },
     { num: 19, symbol: "K", name: "カリウム", note: "く" },
     { num: 20, symbol: "Ca", name: "カルシウム", note: "か" }
 ];
@@ -114,7 +114,7 @@ function renderKobun(thead, tbody) {
         </tr>
     `;
 
-    // データ描画ロジック（前回のlogicを流用）
+    // データ描画ロジック
     let prevConnect = null, cellConnect = null;
     let prevBasic = null, cellBasic = null;
     let prevType = null, cellType = null;
@@ -181,7 +181,7 @@ function renderScience(thead, tbody) {
             <th>番号</th>
             <th>記号</th>
             <th>元素名</th>
-            <th>覚え方など</th>
+            <th>覚え方</th>
         </tr>
     `;
 
@@ -223,7 +223,7 @@ function createTd(text, options = {}) {
 // 暗記用セル（隠す・入力テスト）を作る関数
 function createMemoryCell(answerText, row, col) {
     const td = document.createElement("td");
-    td.classList.add("memory-cell"); // class名変更: conjugation-cell -> memory-cell
+    td.classList.add("memory-cell");
 
     if (isTestMode) {
         // テストモード：入力欄
@@ -275,7 +275,7 @@ function handleArrowKey(e, currentRow, currentCol) {
 function checkAnswers() {
     const inputs = document.querySelectorAll(".test-input");
     inputs.forEach(input => {
-        const userVal = input.value.trim().toLowerCase(); // 大文字小文字を区別しない(元素記号のため)
+        const userVal = input.value.trim().toLowerCase(); // 大文字小文字を区別しない
         const correctRaw = input.dataset.answer;
         const correctOptions = correctRaw.split("/").map(s => s.replace(/[()]/g, "").toLowerCase());
 
@@ -333,7 +333,7 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("btn-back-menu").addEventListener("click", () => {
         gameScreen.style.display = "none";
         menuScreen.style.display = "block";
-        isTestMode = false; // モードリセット
+        isTestMode = false; 
     });
 
     // --- コントロールボタン ---
