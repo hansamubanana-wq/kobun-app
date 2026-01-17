@@ -3,54 +3,53 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>助動詞一覧 暗記ツール</title>
+    <title>暗記マスター</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="container">
-        <h1>❖ 助動詞マスター ❖</h1>
         
-        <div class="control-panel">
-            <div id="mode-view-controls">
-                <button id="btn-hide-all" class="btn btn-red">全隠し</button>
-                <button id="btn-random" class="btn btn-orange">ランダム</button>
-                <button id="btn-show-all" class="btn btn-blue">全表示</button>
-                <button id="btn-start-test" class="btn btn-green">入力テスト</button>
-            </div>
-
-            <div id="mode-test-controls" style="display: none;">
-                <button id="btn-check" class="btn btn-blue">答え合わせ</button>
-                <button id="btn-retry" class="btn btn-orange">やり直し</button>
-                <button id="btn-end-test" class="btn btn-red">終了</button>
+        <div id="menu-screen">
+            <h1>🎓 暗記マスター</h1>
+            <p>学習したい科目を選んでください</p>
+            <div class="menu-buttons">
+                <button id="btn-select-kobun" class="btn btn-red btn-large">古文助動詞</button>
+                <button id="btn-select-science" class="btn btn-green btn-large">理科 元素記号</button>
             </div>
         </div>
 
-        <p class="instruction" id="instruction-text">マスをタップして答え合わせができます</p>
+        <div id="game-screen" style="display: none;">
+            <div class="header-area">
+                <button id="btn-back-menu" class="btn btn-gray">＜ メニューへ</button>
+                <h1 id="subject-title">タイトル</h1>
+            </div>
+            
+            <div class="control-panel">
+                <div id="mode-view-controls">
+                    <button id="btn-hide-all" class="btn btn-red">全隠し</button>
+                    <button id="btn-random" class="btn btn-orange">ランダム</button>
+                    <button id="btn-show-all" class="btn btn-blue">全表示</button>
+                    <button id="btn-start-test" class="btn btn-green">入力テスト</button>
+                </div>
 
-        <div class="table-wrapper">
-            <table id="verb-table">
-                <thead>
-                    <tr>
-                        <th rowspan="2" class="header-connect">接続</th>
-                        <th rowspan="2" class="header-basic">基本形</th>
-                        <th colspan="6" class="header-conj">活用形</th>
-                        <th rowspan="2" class="header-type">活用の型</th>
-                        <th rowspan="2" class="header-mean">おもな意味</th>
-                    </tr>
-                    <tr class="subheader">
-                        <th>未然形</th>
-                        <th>連用形</th>
-                        <th>終止形</th>
-                        <th>連体形</th>
-                        <th>已然形</th>
-                        <th>命令形</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    </tbody>
-            </table>
+                <div id="mode-test-controls" style="display: none;">
+                    <button id="btn-check" class="btn btn-blue">答え合わせ</button>
+                    <button id="btn-retry" class="btn btn-orange">やり直し</button>
+                    <button id="btn-end-test" class="btn btn-red">終了</button>
+                </div>
+            </div>
+
+            <p class="instruction" id="instruction-text">マスをタップして答え合わせができます</p>
+
+            <div class="table-wrapper">
+                <table id="app-table">
+                    <thead></thead>
+                    <tbody></tbody>
+                </table>
+            </div>
         </div>
+
     </div>
 
     <script src="script.js"></script>
